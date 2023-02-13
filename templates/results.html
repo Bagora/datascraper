@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<body>
+
+  <div class="table-users">
+   <div class="head"><h3>Flipkart Product Reviews and Rating</h3></div>
+   <br>
+
+   <table cellspacing="0">
+      <tr>
+         <th>Product</th>
+         <th>Name</th>
+         <th>Rating</th>
+         <th>Reaction</th>
+         <th width="230">Comments</th>
+      </tr>
+         {% for review in reviews %}
+      <tr>
+          <td>{{review['Product']}}</td>
+         <td>{{review['Name']}}</td>
+         <td>{{review['Rating']}}</td>
+         <td>{{review['Reaction']}}</td>
+         <td>{{review['Comment']}} </td>
+       {% endfor %}
+   </table>
+</div>
+</body>
+</html>
+
+{% endblock %}

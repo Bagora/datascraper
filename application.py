@@ -23,7 +23,6 @@ def index():
             flipkart_url = "https://www.flipkart.com/search?q=" + searchString
             uClient = uReq(flipkart_url)
             flipkartPage = uClient.read()
-            uClient.close()
             flipkart_html = bs(flipkartPage, "html.parser")
             bigboxes = flipkart_html.findAll("div", {"class": "_1AtVbE col-12-12"})
             del bigboxes[0:3]
@@ -71,11 +70,11 @@ def index():
                 except Exception as e:
                     logging.info(e)
 
-                mydict = {"Product": searchString, "Name": name, "Rating": rating, "CommentHead": commentHead,
+                mydict = {"Product": searchString, "Name": name, "Rating": rating, "Reaction": commentHead,
                           "Comment": custComment}
                 reviews.append(mydict)
             logging.info("log my final result {}".format(reviews))
-            return render_template('result.html', reviews=reviews[0:(len(reviews)-1)])
+            return render_template('results.html', reviews=reviews[0:(len(reviews)-1)])
         except Exception as e:
             logging.info(e)
             return 'something is wrong'
